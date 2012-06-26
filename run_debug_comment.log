@@ -1,0 +1,1206 @@
+<= で始まる部分がコメント
+<= debugBelch関数にbreakをはってgdbで解析
+
+./Main +RTS -V0 -Ds -Di -Dw -DG -Dg -Db -DS -Dt -Dp -Da -Dl -Dm -Dz -Dc -Dr
+created capset 0 of type 2 <= initCapabilities()
+created capset 1 of type 3 <= initCapabilities()
+assigned cap 0 to capset 0 <= initCapability()
+assigned cap 0 to capset 1 <= initCapability()
+allocated 1 megablock(s) at 0x2aedbbf00000
+<= ↑getMBlocks()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eedc8 "allocated %d megablock(s) at %p", ap=0x7fffffffdce8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eedc8 "allocated %d megablock(s) at %p") at rts/Trace.c:520
+#3  0x00000000006963b6 in getMBlocks (n=1) at rts/sm/MBlock.c:236
+#4  0x0000000000691fbb in alloc_mega_group (mblocks=1) at rts/sm/BlockAlloc.c:305
+#5  0x0000000000692117 in allocGroup (n=128) at rts/sm/BlockAlloc.c:357
+#6  0x000000000069c299 in allocNursery (tail=0x0, blocks=0) at rts/sm/Storage.c:435
+#7  0x000000000069c4c6 in allocNurseries (from=0, to=1) at rts/sm/Storage.c:484
+#8  0x000000000069c03e in storageAddCapabilities (from=0, to=1) at rts/sm/Storage.c:215
+#9  0x000000000069bf7f in initStorage () at rts/sm/Storage.c:184
+#10 0x0000000000683e78 in hs_init_ghc (argc=0x94f190, argv=0x94f198, rts_config=...) at rts/RtsStartup.c:175
+#11 0x0000000000683664 in real_main () at rts/RtsMain.c:47
+#12 0x0000000000683784 in hs_main (argc=18, argv=0x7fffffffe108, main_closure=0x90c8a0, rts_config=...) at rts/RtsMain.c:115
+
+free block list [0]:
+<= ↑checkFreeListSanity()
+#0  debugBelch (s=0x6eea7a "free block list [%d]:\n") at rts/RtsMessages.c:94
+#1  0x0000000000692a8f in checkFreeListSanity () at rts/sm/BlockAlloc.c:697
+#2  0x0000000000692756 in freeGroup (p=0x7ffff6c02100) at rts/sm/BlockAlloc.c:551
+#3  0x0000000000692189 in allocGroup (n=128) at rts/sm/BlockAlloc.c:364
+#4  0x000000000069c299 in allocNursery (tail=0x0, blocks=0) at rts/sm/Storage.c:435
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 124 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 124 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 123 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 122 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 121 blocks
+free block list [7]:
+free block list [8]:
+----------------------------------------------------------
+  Gen     Max  Mut-list  Blocks    Large     Live     Slop
+       Blocks     Bytes          Objects                  
+----------------------------------------------------------
+    0       0         0       1        0        0     4096
+    1       0         0       1        0        0     4096
+----------------------------------------------------------
+                                                0     8192
+----------------------------------------------------------
+<= ↑statDescribeGens()
+#0  debugBelch (s=0x6ec7f9 "\n") at rts/RtsMessages.c:94
+#1  0x000000000068c5d2 in statDescribeGens () at rts/Stats.c:851
+#2  0x000000000069bf8e in initStorage () at rts/sm/Storage.c:186
+#3  0x0000000000683e78 in hs_init_ghc (argc=0x94f190, argv=0x94f198, rts_config=...) at rts/RtsStartup.c:175
+#4  0x0000000000683664 in real_main () at rts/RtsMain.c:47
+
+new task (taskCount: 1)
+<= ↑newBoundTask()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecdf3 "new task (taskCount: %d)", ap=0x7fffffffde88) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecdf3 "new task (taskCount: %d)") at rts/Trace.c:520
+#3  0x000000000068d324 in newBoundTask () at rts/Task.c:277
+#4  0x00000000006c76bc in rts_lock () at rts/RtsAPI.c:544
+#5  0x0000000000683669 in real_main () at rts/RtsMain.c:62
+
+cap 0: created thread 1
+<= ↑createThread()
+#0  debugBelch (s=0x6ee2c7 "cap %d: created thread %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690a70 in traceSchedEvent_stderr (cap=0x94ee00, tag=0, tso=0x7ffff6c05390, info1=111, info2=0) at rts/Trace.c:202
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=0, tso=0x7ffff6c05390, info1=111, info2=0) at rts/Trace.c:249
+#3  0x000000000068deed in traceEventCreateThread (cap=0x94ee00, tso=0x7ffff6c05390) at rts/Trace.h:375
+#4  0x000000000068e12f in createThread (cap=0x94ee00, size=128) at rts/Threads.c:133
+#5  0x00000000006c72fd in createIOThread (cap=0x94ee00, stack_size=128, closure=0x90c8a0) at rts/RtsAPI.c:396
+#6  0x00000000006c758b in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:496
+#7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+cap 0: thread 1 appended to run queue
+<= ↑appendToRunQueue()
+#0  debugBelch (s=0x6ee310 "cap %d: thread %lu appended to run queue\n") at rts/RtsMessages.c:94
+#1  0x0000000000690ad7 in traceSchedEvent_stderr (cap=0x94ee00, tag=3, tso=0x7ffff6c05390, info1=0, info2=0) at rts/Trace.c:210
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=3, tso=0x7ffff6c05390, info1=0, info2=0) at rts/Trace.c:249
+#3  0x00000000006bb621 in traceEventThreadRunnable (cap=0x94ee00, tso=0x7ffff6c05390) at rts/Trace.h:403
+#4  0x00000000006bb6e0 in appendToRunQueue (cap=0x94ee00, tso=0x7ffff6c05390) at rts/Schedule.h:128
+#5  0x0000000000689eb6 in scheduleWaitThread (tso=0x7ffff6c05390, ret=0x0, pcap=0x7fffffffdfa0) at rts/Schedule.c:2149
+#6  0x00000000006c75a6 in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:497
+#7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+new bound thread (1)
+<= ↑scheduleWaitThread()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ec267 "new bound thread (%lu)", ap=0x7fffffffde38) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ec267 "new bound thread (%lu)") at rts/Trace.c:520
+#3  0x0000000000689ee2 in scheduleWaitThread (tso=0x7ffff6c05390, ret=0x0, pcap=0x7fffffffdfa0) at rts/Schedule.c:2152
+#4  0x00000000006c75a6 in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:497
+#5  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+cap 0: schedule()
+<= ↑schedule()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ebf5f "cap %d: schedule()", ap=0x7fffffffdde8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ebf5f "cap %d: schedule()") at rts/Trace.c:520
+#3  0x0000000000688510 in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:220
+#4  0x0000000000689ef5 in scheduleWaitThread (tso=0x7ffff6c05390, ret=0x0, pcap=0x7fffffffdfa0) at rts/Schedule.c:2154
+#5  0x00000000006c75a6 in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:497
+#6  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+cap 0: running thread 1 (ThreadRunGHC)
+<= ↑schedule()
+#0  debugBelch (s=0x6ee2e8 "cap %d: running thread %lu (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690aae in traceSchedEvent_stderr (cap=0x94ee00, tag=1, tso=0x7ffff6c05390, info1=1, info2=0) at rts/Trace.c:206
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=1, tso=0x7ffff6c05390, info1=1, info2=0) at rts/Trace.c:249
+#3  0x0000000000688305 in traceEventRunThread (cap=0x94ee00, tso=0x7ffff6c05390) at rts/Trace.h:382
+#4  0x0000000000688871 in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:451
+
+stg_ap_v_ret... PAP/1(0x920c2a, 0x90c870)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c04010) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x0000000000000000 in ?? ()
+
+New weak pointer at 0x2aedbbf04050
+#0  debugBelch (s=0x6f1090 "New weak pointer at %p\n") at rts/RtsMessages.c:94
+#1  0x00000000006a3718 in stg_mkWeakzh ()
+#2  0x0000000000000000 in ?? ()
+
+words_to_squeeze: 0, weight: 0, squeeze: NO
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s", ap=0x7fffffff9d48) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s") at rts/Trace.c:520
+#3  0x000000000068dd59 in threadPaused (cap=0x94ee00, tso=0x7ffff6c05390) at rts/ThreadPaused.c:361
+#4  0x00000000006a5fe2 in stg_noDuplicatezh ()
+#5  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... base:GHC.MVar.MVar(0x2aedbbf04130)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x7ffff6c04130) at rts/Printer.c:51
+#2  0x00000000006c36b1 in printClosure (obj=0x7ffff6c04188) at rts/Printer.c:136
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? (
+
+stg_ap_v_ret... THUNK(0x4041d8)
+#0  debugBelch (s=0x6fd655 ")\n") at rts/RtsMessages.c:94
+#1  0x00000000006c35a7 in printThunkPayload (obj=0x90c870) at rts/Printer.c:102
+#2  0x00000000006c35d8 in printThunkObject (obj=0x90c870, tag=0x6fd679 "THUNK") at rts/Printer.c:109
+#3  0x00000000006c37c7 in printClosure (obj=0x90c870) at rts/Printer.c:172
+#4  0x00000000006a90b2 in stg_ap_v_info ()
+#5  0x0000000000000000 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x9373ea, 0x90c851)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c041e8) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x0000000000000000 in ?? ()
+
+words_to_squeeze: 0, weight: 0, squeeze: NO
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s", ap=0x7fffffff9d48) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s") at rts/Trace.c:520
+#3  0x000000000068dd59 in threadPaused (cap=0x94ee00, tso=0x7ffff6c05390) at rts/ThreadPaused.c:361
+#4  0x00000000006a5fe2 in stg_noDuplicatezh ()
+#5  0x0000000000000000 in ?? ()
+
+words_to_squeeze: 0, weight: 0, squeeze: NO
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s", ap=0x7fffffff9d48) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s") at rts/Trace.c:520
+#3  0x000000000068dd59 in threadPaused (cap=0x94ee00, tso=0x7ffff6c05390) at rts/ThreadPaused.c:361
+#4  0x00000000006a5fe2 in stg_noDuplicatezh ()
+#5  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... ghc-prim:GHC.Tuple.(,)(0x2aedbbf04269, 0x2aedbbf0425a)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x7ffff6c04269) at rts/Printer.c:51
+#2  0x00000000006c36b1 in printClosure (obj=0x7ffff6c04278) at rts/Printer.c:136
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? ()
+
+words_to_squeeze: 0, weight: 0, squeeze: NO
+words_to_squeeze: 0, weight: 0, squeeze: NO
+stg_ap_0_ret... ghc-prim:GHC.Types.:(0x2aedbbf043f1, 0x2aedbbf043da)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x7ffff6c043f1) at rts/Printer.c:51
+#2  0x00000000006c36b1 in printClosure (obj=0x7ffff6c04400) at rts/Printer.c:136
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... THUNK(0x424990, 0x910159)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x424990) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c04e38, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c04e38, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c04e38) at rts/Printer.c:172
+#5  0x00000000006a091e in stg_ap_0_fast ()
+#6  0x0000000000000000 in ?? ()
+
+stg_ap_v_ret... THUNK(0x457d50, 0x2aedbbf042a0, 0x9426e0, 0x941c78)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x457d50) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c042b8, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c042b8, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c042b8) at rts/Printer.c:172
+#5  0x00000000006a90b2 in stg_ap_v_info ()
+#6  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... FUN/3(0x5c35b8)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5c35b8) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x941928) at rts/Printer.c:151
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_pp_ret... FUN/3(0x5c35b8)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5c35b8) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x941928) at rts/Printer.c:151
+#3  0x00000000006abeb4 in stg_ap_pp_info ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x94192b, 0x941c78, 0x2aedbbf042a0)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x94192b) at rts/Printer.c:51
+#2  0x00000000006c38cc in printClosure (obj=0x7ffff6c04ee0) at rts/Printer.c:203
+#3  0x00000000006a90b2 in stg_ap_v_info ()
+#4  0x0000000000000000 in ?? ()
+
+free block list [0]:
+#0  debugBelch (s=0x6eea7a "free block list [%d]:\n") at rts/RtsMessages.c:94
+#1  0x0000000000692a8f in checkFreeListSanity () at rts/sm/BlockAlloc.c:697
+#2  0x0000000000692269 in allocGroup (n=2) at rts/sm/BlockAlloc.c:388
+#3  0x000000000069c8cb in allocate (cap=0x94ee00, n=1016) at rts/sm/Storage.c:648
+#4  0x000000000069cb3f in allocatePinned (cap=0x94ee00, n=1016) at rts/sm/Storage.c:733
+#5  0x00000000006a3154 in stg_newPinnedByteArrayzh ()
+#6  0x0000000000000000 in ?? ()
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 119 blocks
+#0  debugBelch (s=0x6eea98 "group at %p, length %ld blocks\n") at rts/RtsMessages.c:94
+#1  0x0000000000692ad7 in checkFreeListSanity () at rts/sm/BlockAlloc.c:702
+#2  0x0000000000692269 in allocGroup (n=3) at rts/sm/BlockAlloc.c:388
+#3  0x000000000069c8cb in allocate (cap=0x94ee00, n=1028) at rts/sm/Storage.c:648
+#4  0x000000000069cb3f in allocatePinned (cap=0x94ee00, n=1028) at rts/sm/Storage.c:733
+#5  0x00000000006a3154 in stg_newPinnedByteArrayzh ()
+#6  0x0000000000000000 in ?? ()
+
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 116 blocks
+free block list [7]:
+free block list [8]:
+stg_ap_0_ret... FUN/2(0x5c6468)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5c6468) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x941e70) at rts/Printer.c:151
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_pv_ret... FUN/2(0x5c6468)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5c6468) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x941e70) at rts/Printer.c:151
+#3  0x00000000006ab6c1 in stg_ap_pv_info ()
+#4  0x0000000000000000 in ?? ()
+
+New weak pointer at 0x2aedbbf06198
+#0  debugBelch (s=0x6f1090 "New weak pointer at %p\n") at rts/RtsMessages.c:94
+#1  0x00000000006a3718 in stg_mkWeakzh ()
+#2  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... base:GHC.IO.Handle.Types.FileHandle(0x913fd8, 0x2aedbbf060c0)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x913fd8) at rts/Printer.c:51
+#2  0x00000000006c36b1 in printClosure (obj=0x7ffff6c061c8) at rts/Printer.c:136
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf061f2, 0x2aedbbf060e0)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x6a8a78) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c06258, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c06258, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c06258) at rts/Printer.c:172
+#5  0x00000000006a90b2 in stg_ap_v_info ()
+#6  0x0000000000000000 in ?? ()
+
+stg_ap_p_ret... FUN/2(0x45bb90, 0x2aedbbf0420a)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x45bb90) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x7ffff6c061f0) at rts/Printer.c:151
+#3  0x00000000006aafd9 in stg_ap_p_info ()
+#4  0x0000000000000000 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x2aedbbf061f2, 0x2aedbbf060e0)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c06278) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x0000000000000000 in ?? ()
+
+stg_ap_0_ret... base:GHC.IO.FD.FD(0x1#, (nil)#)
+#0  debugBelch (s=0x6fd667 "%p#") at rts/RtsMessages.c:94
+#1  0x00000000006c3714 in printClosure (obj=0x941c78) at rts/Printer.c:140
+#2  0x00000000006a091e in stg_ap_0_fast ()
+#3  0x0000000000000000 in ?? ()
+
+cap 0: thread 1 stopped (finished)
+#0  debugBelch (s=0x6ee3d8 "cap %d: thread %lu stopped (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690b9b in traceSchedEvent_stderr (cap=0x94ee00, tag=2, tso=0x7ffff6c05390, info1=5, info2=0) at rts/Trace.c:227
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=2, tso=0x7ffff6c05390, info1=5, info2=0) at rts/Trace.c:249
+#3  0x0000000000688348 in traceEventStopThread (cap=0x94ee00, tso=0x7ffff6c05390, status=5, info=0) at rts/Trace.h:391
+#4  0x00000000006889cb in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:503
+#5  0x0000000000689ef5 in scheduleWaitThread (tso=0x7ffff6c05390, ret=0x0, pcap=0x7fffffffdfa0) at rts/Schedule.c:2154
+#6  0x00000000006c75a6 in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:497
+#7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+bound thread (1) finished
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ec27e "bound thread (%lu) finished", ap=0x7fffffffde38) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ec27e "bound thread (%lu) finished") at rts/Trace.c:520
+#3  0x0000000000689fd6 in scheduleWaitThread (tso=0x7ffff6c05390, ret=0x0, pcap=0x7fffffffdfa0) at rts/Schedule.c:2159
+#4  0x00000000006c75a6 in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:497
+#5  0x0000000000683688 in real_main () at rts/RtsMain.c:63
+
+task exiting
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ece17 "task exiting", ap=0x7fffffffde78) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ece17 "task exiting") at rts/Trace.c:520
+#3  0x000000000068d390 in boundTaskExiting (task=0x9711d0) at rts/Task.c:299
+#4  0x00000000006c77da in rts_unlock (cap=0x94ee00) at rts/RtsAPI.c:587
+#5  0x00000000006836b0 in real_main () at rts/RtsMain.c:66
+
+new task (taskCount: 1)
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecdf3 "new task (taskCount: %d)", ap=0x7fffffffde28) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecdf3 "new task (taskCount: %d)") at rts/Trace.c:520
+#3  0x000000000068d324 in newBoundTask () at rts/Task.c:277
+#4  0x00000000006c76bc in rts_lock () at rts/RtsAPI.c:544
+#5  0x0000000000684092 in flushStdHandles () at rts/RtsStartup.c:433
+#6  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: created thread 2
+#0  debugBelch (s=0x6ee2c7 "cap %d: created thread %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690a70 in traceSchedEvent_stderr (cap=0x94ee00, tag=0, tso=0x7ffff6c059b8, info1=111, info2=0) at rts/Trace.c:202
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=0, tso=0x7ffff6c059b8, info1=111, info2=0) at rts/Trace.c:249
+#3  0x000000000068deed in traceEventCreateThread (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/Trace.h:375
+#4  0x000000000068e12f in createThread (cap=0x94ee00, size=128) at rts/Threads.c:133
+#5  0x00000000006c7366 in createStrictIOThread (cap=0x94ee00, stack_size=128, closure=0x920a08) at rts/RtsAPI.c:412
+#6  0x00000000006c7486 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:455
+#7  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#8  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: thread 2 appended to run queue
+#0  debugBelch (s=0x6ee310 "cap %d: thread %lu appended to run queue\n") at rts/RtsMessages.c:94
+#1  0x0000000000690ad7 in traceSchedEvent_stderr (cap=0x94ee00, tag=3, tso=0x7ffff6c059b8, info1=0, info2=0) at rts/Trace.c:210
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=3, tso=0x7ffff6c059b8, info1=0, info2=0) at rts/Trace.c:249
+#3  0x00000000006bb621 in traceEventThreadRunnable (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/Trace.h:403
+#4  0x00000000006bb6e0 in appendToRunQueue (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/Schedule.h:128
+#5  0x0000000000689eb6 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2149
+#6  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#7  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#8  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+new bound thread (2)
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ec267 "new bound thread (%lu)", ap=0x7fffffffddd8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ec267 "new bound thread (%lu)") at rts/Trace.c:520
+#3  0x0000000000689ee2 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2152
+#4  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#5  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#6  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: schedule()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ebf5f "cap %d: schedule()", ap=0x7fffffffdd88) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ebf5f "cap %d: schedule()") at rts/Trace.c:520
+#3  0x0000000000688510 in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:220
+#4  0x0000000000689ef5 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2154
+#5  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#6  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#7  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#8  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#9  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: running thread 2 (ThreadRunGHC)
+#0  debugBelch (s=0x6ee2e8 "cap %d: running thread %lu (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690aae in traceSchedEvent_stderr (cap=0x94ee00, tag=1, tso=0x7ffff6c059b8, info1=1, info2=0) at rts/Trace.c:206
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=1, tso=0x7ffff6c059b8, info1=1, info2=0) at rts/Trace.c:249
+#3  0x0000000000688305 in traceEventRunThread (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/Trace.h:382
+#4  0x0000000000688871 in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:451
+#5  0x0000000000689ef5 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2154
+#6  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#7  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#8  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+stg_ap_v_ret... FUN/1(0x4d5cb0)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x4d5cb0) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x920a08) at rts/Printer.c:151
+#3  0x00000000006a90b2 in stg_ap_v_info ()
+#4  0x00000000004583e8 in ?? ()
+#5  0x00007ffff6c06088 in ?? ()
+#6  0x00007fffffff9e48 in ?? ()
+#7  0x000000000094ee18 in MainCapability ()
+#8  0x00007fffffff9e70 in ?? ()
+#9  0x000000000069ccaa in dirty_MUT_VAR (reg=0xaaaaaaaaaaaaaaaa, p=0xaaaaaaaaaaaaaaaa) at rts/sm/Storage.c:790
+
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf06492, 0x2aedbbf06299)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x6a8a78) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c064f8, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c064f8, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c064f8) at rts/Printer.c:172
+#5  0x00000000006a90b2 in stg_ap_v_info ()
+#6  0x00000000004583e8 in ?? ()
+
+stg_ap_p_ret... FUN/2(0x45bb90, 0x914852)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x45bb90) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x7ffff6c06490) at rts/Printer.c:151
+#3  0x00000000006aafd9 in stg_ap_p_info ()
+#4  0x00000000004583e8 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x2aedbbf06492, 0x2aedbbf06299)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c06518) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x00000000004583e8 in ?? ()
+
+stg_ap_0_ret... FUN/3(0x5cad18)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5cad18) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x942578) at rts/Printer.c:151
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x00000000004583e8 in ?? ()
+
+stg_ap_ppv_ret... FUN/3(0x5cad18)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x5cad18) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x942578) at rts/Printer.c:151
+#3  0x00000000006ac6dc in stg_ap_ppv_info ()
+#4  0x00000000004583e8 in ?? ()
+
+cap 0: thread 2 stopped (suspended while making a foreign call)
+#0  debugBelch (s=0x6ee3d8 "cap %d: thread %lu stopped (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690b9b in traceSchedEvent_stderr (cap=0x94ee00, tag=2, tso=0x7ffff6c059b8, info1=6, info2=0) at rts/Trace.c:227
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=2, tso=0x7ffff6c059b8, info1=6, info2=0) at rts/Trace.c:249
+#3  0x0000000000688348 in traceEventStopThread (cap=0x94ee00, tso=0x7ffff6c059b8, status=6, info=0) at rts/Trace.h:391
+#4  0x0000000000689bd9 in suspendThread (reg=0x94ee18, interruptible=rtsFalse) at rts/Schedule.c:1998
+#5  0x00000000005c4e12 in s3OJ_info ()
+#6  0x00000000004583e8 in ?? ()
+
+words_to_squeeze: 0, weight: 0, squeeze: NO
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s", ap=0x7fffffff9ca8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s") at rts/Trace.c:520
+#3  0x000000000068dd59 in threadPaused (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/ThreadPaused.c:361
+#4  0x0000000000689bf6 in suspendThread (reg=0x94ee18, interruptible=rtsFalse) at rts/Schedule.c:2003
+#5  0x00000000005c4e12 in s3OJ_info ()
+#6  0x00000000004583e8 in ?? ()
+
+cap 0: running thread 2 (ThreadRunGHC)
+#0  debugBelch (s=0x6ee2e8 "cap %d: running thread %lu (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690aae in traceSchedEvent_stderr (cap=0x94ee00, tag=1, tso=0x7ffff6c059b8, info1=1, info2=0) at rts/Trace.c:206
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=1, tso=0x7ffff6c059b8, info1=1, info2=0) at rts/Trace.c:249
+#3  0x0000000000688305 in traceEventRunThread (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/Trace.h:382
+#4  0x0000000000689d1e in resumeThread (task_=0x9711d0) at rts/Schedule.c:2065
+#5  0x00000000005c4e48 in s3OJ_info ()
+#6  0x00000000004583e8 in ?? ()
+
+Hwords_to_squeeze: 0, weight: 0, squeeze: NO <= Goal!
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s", ap=0x7fffffff9ce8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecef0 "words_to_squeeze: %d, weight: %d, squeeze: %s") at rts/Trace.c:520
+#3  0x000000000068dd59 in threadPaused (cap=0x94ee00, tso=0x7ffff6c059b8) at rts/ThreadPaused.c:361
+#4  0x00000000006a5fe2 in stg_noDuplicatezh ()
+#5  0x00000000004583e8 in ?? ()
+
+stg_ap_v_ret... THUNK(0x457d50, 0x2aedbbf06660, 0x9426e0, 0x941c90)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x457d50) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c06678, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c06678, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c06678) at rts/Printer.c:172
+#5  0x00000000006a90b2 in stg_ap_v_info ()
+#6  0x00000000004583e8 in ?? ()
+
+stg_ap_0_ret... FUN/3(0x5c35b8)
+#0  debugBelch (s=0x6fd66b "FUN/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c3758 in printClosure (obj=0x941928) at rts/Printer.c:150
+#2  0x00000000006a091e in stg_ap_0_fast ()
+#3  0x00000000004583e8 in ?? ()
+
+stg_ap_pp_ret... FUN/3(0x5c35b8)
+#0  debugBelch (s=0x6fd66b "FUN/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c3758 in printClosure (obj=0x941928) at rts/Printer.c:150
+#2  0x00000000006abeb4 in stg_ap_pp_info ()
+#3  0x00000000004583e8 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x94192b, 0x941c90, 0x2aedbbf06660)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c06720) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x00000000004583e8 in ?? ()
+
+free block list [0]:
+#0  debugBelch (s=0x6eea7a "free block list [%d]:\n") at rts/RtsMessages.c:94
+#1  0x0000000000692a8f in checkFreeListSanity () at rts/sm/BlockAlloc.c:697
+#2  0x0000000000692269 in allocGroup (n=2) at rts/sm/BlockAlloc.c:388
+#3  0x000000000069c8cb in allocate (cap=0x94ee00, n=1016) at rts/sm/Storage.c:648
+#4  0x000000000069cb3f in allocatePinned (cap=0x94ee00, n=1016) at rts/sm/Storage.c:733
+#5  0x00000000006a3154 in stg_newPinnedByteArrayzh ()
+#6  0x00000000004583e8 in ?? ()
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 114 blocks
+#0  debugBelch (s=0x6eea98 "group at %p, length %ld blocks\n") at rts/RtsMessages.c:94
+#1  0x0000000000692ad7 in checkFreeListSanity () at rts/sm/BlockAlloc.c:702
+#2  0x0000000000692269 in allocGroup (n=2) at rts/sm/BlockAlloc.c:388
+#3  0x000000000069c8cb in allocate (cap=0x94ee00, n=1016) at rts/sm/Storage.c:648
+#4  0x000000000069cb3f in allocatePinned (cap=0x94ee00, n=1016) at rts/sm/Storage.c:733
+#5  0x00000000006a3154 in stg_newPinnedByteArrayzh ()
+#6  0x00000000004583e8 in ?? ()
+
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+New weak pointer at 0x2aedbbf06968
+#0  debugBelch (s=0x6f1090 "New weak pointer at %p\n") at rts/RtsMessages.c:94
+#1  0x00000000006a3718 in stg_mkWeakzh ()
+#2  0x00000000004583e8 in ?? ()
+
+stg_ap_0_ret... base:GHC.IO.Handle.Types.FileHandle(0x913f30, 0x2aedbbf06890)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x913f30) at rts/Printer.c:51
+#2  0x00000000006c36b1 in printClosure (obj=0x7ffff6c06998) at rts/Printer.c:136
+#3  0x00000000006a091e in stg_ap_0_fast ()
+#4  0x00000000004583e8 in ?? ()
+
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf069c2, 0x2aedbbf068b0)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x6a8a78) at rts/Printer.c:51
+#2  0x00000000006c343f in printStdObjHdr (obj=0x7ffff6c06a28, tag=0x6fd679 "THUNK") at rts/Printer.c:65
+#3  0x00000000006c35cc in printThunkObject (obj=0x7ffff6c06a28, tag=0x6fd679 "THUNK") at rts/Printer.c:108
+#4  0x00000000006c37c7 in printClosure (obj=0x7ffff6c06a28) at rts/Printer.c:172
+#5  0x00000000006a90b2 in stg_ap_v_info ()
+#6  0x00000000004583e8 in ?? ()
+
+stg_ap_p_ret... FUN/2(0x45bb90, 0x914852)
+#0  debugBelch (s=0x6fd638 "%p") at rts/RtsMessages.c:94
+#1  0x00000000006c33c4 in printPtr (p=0x45bb90) at rts/Printer.c:51
+#2  0x00000000006c376a in printClosure (obj=0x7ffff6c069c0) at rts/Printer.c:151
+#3  0x00000000006aafd9 in stg_ap_p_info ()
+#4  0x00000000004583e8 in ?? ()
+
+stg_ap_v_ret... PAP/1(0x2aedbbf069c2, 0x2aedbbf068b0)
+#0  debugBelch (s=0x6fd699 "PAP/%d(") at rts/RtsMessages.c:94
+#1  0x00000000006c38bc in printClosure (obj=0x7ffff6c06a48) at rts/Printer.c:202
+#2  0x00000000006a90b2 in stg_ap_v_info ()
+#3  0x00000000004583e8 in ?? ()
+
+stg_ap_0_ret... base:GHC.IO.FD.FD(0x2#, (nil)#)
+#0  debugBelch (s=0x6fd667 "%p#") at rts/RtsMessages.c:94
+#1  0x00000000006c3714 in printClosure (obj=0x941c90) at rts/Printer.c:140
+#2  0x00000000006a091e in stg_ap_0_fast ()
+#3  0x00000000004583e8 in ?? ()
+
+cap 0: thread 2 stopped (finished)
+#0  debugBelch (s=0x6ee3d8 "cap %d: thread %lu stopped (%s)\n") at rts/RtsMessages.c:94
+#1  0x0000000000690b9b in traceSchedEvent_stderr (cap=0x94ee00, tag=2, tso=0x7ffff6c059b8, info1=5, info2=0) at rts/Trace.c:227
+#2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=2, tso=0x7ffff6c059b8, info1=5, info2=0) at rts/Trace.c:249
+#3  0x0000000000688348 in traceEventStopThread (cap=0x94ee00, tso=0x7ffff6c059b8, status=5, info=0) at rts/Trace.h:391
+#4  0x00000000006889cb in schedule (initialCapability=0x94ee00, task=0x9711d0) at rts/Schedule.c:503
+#5  0x0000000000689ef5 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2154
+#6  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#7  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#8  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+bound thread (2) finished
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ec27e "bound thread (%lu) finished", ap=0x7fffffffddd8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ec27e "bound thread (%lu) finished") at rts/Trace.c:520
+#3  0x0000000000689fd6 in scheduleWaitThread (tso=0x7ffff6c059b8, ret=0x0, pcap=0x7fffffffdf48) at rts/Schedule.c:2159
+#4  0x00000000006c74a1 in rts_evalIO (cap=0x7fffffffdf48, p=0x920a08, ret=0x0) at rts/RtsAPI.c:456
+#5  0x00000000006840ac in flushStdHandles () at rts/RtsStartup.c:434
+#6  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+task exiting
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ece17 "task exiting", ap=0x7fffffffde18) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ece17 "task exiting") at rts/Trace.c:520
+#3  0x000000000068d390 in boundTaskExiting (task=0x9711d0) at rts/Task.c:299
+#4  0x00000000006c77da in rts_unlock (cap=0x94ee00) at rts/RtsAPI.c:587
+#5  0x00000000006840b8 in flushStdHandles () at rts/RtsStartup.c:435
+#6  0x0000000000683fd6 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:314
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+new task (taskCount: 1)
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecdf3 "new task (taskCount: %d)", ap=0x7fffffffde38) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecdf3 "new task (taskCount: %d)") at rts/Trace.c:520
+#3  0x000000000068d324 in newBoundTask () at rts/Task.c:277
+#4  0x000000000068a060 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2267
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+all threads:
+#0  debugBelch (s=0x6ed390 "all threads:\n") at rts/RtsMessages.c:94
+#1  0x000000000068f00b in printAllThreads () at rts/Threads.c:783
+#2  0x00000000006895be in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1497
+#3  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#4  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#5  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#6  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+threads on capability 0:
+#0  debugBelch (s=0x6ed39e "threads on capability %d:\n") at rts/RtsMessages.c:94
+#1  0x000000000068f04d in printAllThreads () at rts/Threads.c:787
+#2  0x00000000006895be in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1497
+#3  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#4  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#5  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#6  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+other threads:
+#0  debugBelch (s=0x6ed3b9 "other threads:\n") at rts/RtsMessages.c:94
+#1  0x000000000068f09e in printAllThreads () at rts/Threads.c:793
+#2  0x00000000006895be in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1497
+#3  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#4  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#5  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#6  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+deleting all threads
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ec252 "deleting all threads", ap=0x7fffffffddd8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ec252 "deleting all threads") at rts/Trace.c:520
+#3  0x0000000000689983 in deleteAllThreads (cap=0x94ee00) at rts/Schedule.c:1898
+#4  0x00000000006895d7 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1506
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: starting GC
+#0  debugBelch (s=0x6ee4c0 "cap %d: starting GC\n") at rts/RtsMessages.c:94
+#1  0x0000000000690cf1 in traceGcEvent_stderr (cap=0x94ee00, tag=9) at rts/Trace.c:271
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=9) at rts/Trace.c:298
+#3  0x0000000000688374 in traceEventGcStart (cap=0x94ee00) at rts/Trace.h:443
+#4  0x00000000006895fb in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1524
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+GC (gen 1): 552 KB to collect, 1 MB in use, using 1 thread(s)
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eeaf8 "GC (gen %d): %d KB to collect, %ld MB in use, using %d thread(s)", ap=0x7fffffffdd48) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eeaf8 "GC (gen %d): %d KB to collect, %ld MB in use, using %d thread(s)") at rts/Trace.c:520
+#3  0x0000000000693239 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:271
+#4  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+Memory inventory:
+  gen 0 blocks :    11 blocks (0 MB)
+  gen 1 blocks :     2 blocks (0 MB)
+  nursery      :   128 blocks (0 MB)
+  retainer     :     0 blocks (0 MB)
+  arena blocks :     0 blocks (0 MB)
+  exec         :     0 blocks (0 MB)
+  free         :   111 blocks (0 MB)
+  total        :   252 blocks (0 MB)
+#0  debugBelch (s=0x6ef390 "  total        : %5lu blocks (%lu MB)\n") at rts/RtsMessages.c:94
+#1  0x0000000000698c95 in memInventory (show=rtsTrue) at rts/sm/Sanity.c:933
+#2  0x0000000000693246 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:282
+#3  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#4  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+free block list [0]:
+#0  debugBelch (s=0x6eea7a "free block list [%d]:\n") at rts/RtsMessages.c:94
+#1  0x0000000000692a8f in checkFreeListSanity () at rts/sm/BlockAlloc.c:697
+#2  0x00000000006983b0 in checkSanity (after_gc=rtsFalse, major_gc=rtsTrue) at rts/sm/Sanity.c:754
+#3  0x0000000000693262 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:286
+#4  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+group at 0x2aedbbfff000, length 1 blocks
+#0  debugBelch (s=0x6eea98 "group at %p, length %ld blocks\n") at rts/RtsMessages.c:94
+#1  0x0000000000692ad7 in checkFreeListSanity () at rts/sm/BlockAlloc.c:702
+#2  0x0000000000692756 in freeGroup (p=0x7ffff6c03fc0) at rts/sm/BlockAlloc.c:551
+#3  0x000000000069279d in freeChain (bd=0x7ffff6c03fc0) at rts/sm/BlockAlloc.c:568
+#4  0x00000000006944c6 in prepare_collected_gen (gen=0x95c680) at rts/sm/GC.c:1223
+#5  0x000000000069328e in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:290
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+cap 0: GC working
+#0  debugBelch (s=0x6ee4fb "cap %d: GC working\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d4b in traceGcEvent_stderr (cap=0x94ee00, tag=21) at rts/Trace.c:280
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=21) at rts/Trace.c:298
+#3  0x0000000000693107 in traceEventGcWork (cap=0x94ee00) at rts/Trace.h:473
+#4  0x000000000069338f in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:325
+#5  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#6  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#7  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#8  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#9  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+STM: 0x94bb08 : lock_stm()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eb3b8 "STM: %p : lock_stm()", ap=0x7fffffffdcc8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eb3b8 "STM: %p : lock_stm()") at rts/Trace.c:520
+#3  0x0000000000684e24 in lock_stm (trec=0x94bb08) at rts/STM.c:183
+#4  0x0000000000686141 in stmPreGCHook (cap=0x94ee00) at rts/STM.c:883
+#5  0x0000000000681003 in markCapability (evac=0x694c14 <mark_root>, user=0x94f860, cap=0x94ee00, no_mark_sparks=rtsTrue) at rts/Capability.c:1007
+#6  0x0000000000693452 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:351
+#7  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#8  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#9  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#10 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#11 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+STM: stmPreGCHook
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eb6d7 "STM: stmPreGCHook", ap=0x7fffffffdce8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eb6d7 "STM: stmPreGCHook") at rts/Trace.c:520
+#3  0x000000000068615d in stmPreGCHook (cap=0x94ee00) at rts/STM.c:884
+#4  0x0000000000681003 in markCapability (evac=0x694c14 <mark_root>, user=0x94f860, cap=0x94ee00, no_mark_sparks=rtsTrue) at rts/Capability.c:1007
+#5  0x0000000000693452 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:351
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+STM: 0x94bb08 : unlock_stm()
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eb3cd "STM: %p : unlock_stm()", ap=0x7fffffffdcc8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eb3cd "STM: %p : unlock_stm()") at rts/Trace.c:520
+#3  0x0000000000684e55 in unlock_stm (trec=0x94bb08) at rts/STM.c:187
+#4  0x0000000000686194 in stmPreGCHook (cap=0x94ee00) at rts/STM.c:888
+#5  0x0000000000681003 in markCapability (evac=0x694c14 <mark_root>, user=0x94f860, cap=0x94ee00, no_mark_sparks=rtsTrue) at rts/Capability.c:1007
+#6  0x0000000000693452 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:351
+#7  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#8  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#9  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#10 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#11 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+scavenging static objects
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6efaa8 "scavenging static objects", ap=0x7fffffffdcb8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6efaa8 "scavenging static objects") at rts/Trace.c:520
+#3  0x000000000069b1ff in scavenge_static () at rts/sm/Scav.c:1447
+#4  0x000000000069b9eb in scavenge_loop () at rts/sm/Scav.c:1879
+#5  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#6  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#7  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#8  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#9  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#10 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#11 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+scavenging block 0x2aedbbffd000 (gen 1) @ 0x2aedbbffd000
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ef410 "scavenging block %p (gen %d) @ %p", ap=0x7fffffffdc18) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ef410 "scavenging block %p (gen %d) @ %p") at rts/Trace.c:520
+#3  0x000000000069989e in scavenge_block (bd=0x7ffff6c03f40) at rts/sm/Scav.c:382
+#4  0x000000000069b921 in scavenge_find_work () at rts/sm/Scav.c:1817
+#5  0x000000000069ba11 in scavenge_loop () at rts/sm/Scav.c:1893
+#6  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#7  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#8  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#9  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#10 0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#11 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#12 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+   scavenged 1192 bytes
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ef46d "   scavenged %ld bytes", ap=0x7fffffffdc18) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ef46d "   scavenged %ld bytes") at rts/Trace.c:520
+#3  0x000000000069a22d in scavenge_block (bd=0x7ffff6c03f40) at rts/sm/Scav.c:727
+#4  0x000000000069b921 in scavenge_find_work () at rts/sm/Scav.c:1817
+#5  0x000000000069ba11 in scavenge_loop () at rts/sm/Scav.c:1893
+#6  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#7  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#8  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#9  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#10 0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#11 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#12 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+scavenging block 0x2aedbbffe000 (gen 0) @ 0x2aedbbffe000
+   scavenged 2048 bytes
+scavenging static objects
+scavenging block 0x2aedbbffd000 (gen 1) @ 0x2aedbbffd4a8
+   scavenged 64 bytes
+cap 0: GC idle
+#0  debugBelch (s=0x6ee4ea "cap %d: GC idle\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d2e in traceGcEvent_stderr (cap=0x94ee00, tag=20) at rts/Trace.c:277
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=20) at rts/Trace.c:298
+#3  0x00000000006930db in traceEventGcIdle (cap=0x94ee00) at rts/Trace.h:467
+#4  0x00000000006943ed in scavenge_until_all_done () at rts/sm/GC.c:1014
+#5  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+0 GC threads still running
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eec47 "%d GC threads still running", ap=0x7fffffffdd28) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eec47 "%d GC threads still running") at rts/Trace.c:520
+#3  0x000000000069440e in scavenge_until_all_done () at rts/sm/GC.c:1016
+#4  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#5  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#6  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#7  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#8  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#9  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: GC done
+#0  debugBelch (s=0x6ee50f "cap %d: GC done\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d68 in traceGcEvent_stderr (cap=0x94ee00, tag=22) at rts/Trace.c:283
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=22) at rts/Trace.c:298
+#3  0x0000000000693133 in traceEventGcDone (cap=0x94ee00) at rts/Trace.h:479
+#4  0x000000000069444d in scavenge_until_all_done () at rts/sm/GC.c:1031
+#5  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+weak pointer still alive at 0x2aedbbffe000 -> 0x2aedbbffd1d0
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eee20 "weak pointer still alive at %p -> %p", ap=0x7fffffffdcf8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eee20 "weak pointer still alive at %p -> %p") at rts/Trace.c:520
+#3  0x00000000006966ca in traverseWeakPtrList () at rts/sm/MarkWeak.c:148
+#4  0x00000000006934c2 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:384
+#5  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#6  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#7  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#8  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#9  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+weak pointer still alive at 0x2aedbbffe030 -> 0x2aedbbffd0f0
+scavenging block 0x2aedbbffe000 (gen 0) @ 0x2aedbbffe800
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ef410 "scavenging block %p (gen %d) @ %p", ap=0x7fffffffdc18) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ef410 "scavenging block %p (gen %d) @ %p") at rts/Trace.c:520
+#3  0x000000000069989e in scavenge_block (bd=0x7ffff6c03f80) at rts/sm/Scav.c:382
+#4  0x000000000069b921 in scavenge_find_work () at rts/sm/Scav.c:1817
+#5  0x000000000069ba11 in scavenge_loop () at rts/sm/Scav.c:1893
+#6  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#7  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#8  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#9  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#10 0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#11 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#12 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+   scavenged 80 bytes
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ef46d "   scavenged %ld bytes", ap=0x7fffffffdc18) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ef46d "   scavenged %ld bytes") at rts/Trace.c:520
+#3  0x000000000069a22d in scavenge_block (bd=0x7ffff6c03f80) at rts/sm/Scav.c:727
+#4  0x000000000069b921 in scavenge_find_work () at rts/sm/Scav.c:1817
+#5  0x000000000069ba11 in scavenge_loop () at rts/sm/Scav.c:1893
+#6  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#7  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#8  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#9  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#10 0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#11 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#12 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+scavenging static objects
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6efaa8 "scavenging static objects", ap=0x7fffffffdcb8) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6efaa8 "scavenging static objects") at rts/Trace.c:520
+#3  0x000000000069b1ff in scavenge_static () at rts/sm/Scav.c:1447
+#4  0x000000000069b9eb in scavenge_loop () at rts/sm/Scav.c:1879
+#5  0x00000000006943d0 in scavenge_until_all_done () at rts/sm/GC.c:1001
+#6  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#7  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#8  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#9  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#10 0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#11 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: GC idle
+#0  debugBelch (s=0x6ee4ea "cap %d: GC idle\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d2e in traceGcEvent_stderr (cap=0x94ee00, tag=20) at rts/Trace.c:277
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=20) at rts/Trace.c:298
+#3  0x00000000006930db in traceEventGcIdle (cap=0x94ee00) at rts/Trace.h:467
+#4  0x00000000006943ed in scavenge_until_all_done () at rts/sm/GC.c:1014
+#5  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+0 GC threads still running
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eec47 "%d GC threads still running", ap=0x7fffffffdd28) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eec47 "%d GC threads still running") at rts/Trace.c:520
+#3  0x000000000069440e in scavenge_until_all_done () at rts/sm/GC.c:1016
+#4  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#5  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#6  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#7  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#8  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#9  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: GC done
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+#0  debugBelch (s=0x6ee50f "cap %d: GC done\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d68 in traceGcEvent_stderr (cap=0x94ee00, tag=22) at rts/Trace.c:283
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=22) at rts/Trace.c:298
+#3  0x0000000000693133 in traceEventGcDone (cap=0x94ee00) at rts/Trace.h:479
+#4  0x000000000069444d in scavenge_until_all_done () at rts/sm/GC.c:1031
+#5  0x00000000006934bd in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:378
+#6  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#7  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#8  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#9  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#10 0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+mut_list_size: 24 (0 vars, 0 arrays, 0 MVARs, 0 others)
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6eebc0 "mut_list_size: %lu (%d vars, %d arrays, %d MVARs, %d others)", ap=0x7fffffffdd48) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6eebc0 "mut_list_size: %lu (%d vars, %d arrays, %d MVARs, %d others)") at rts/Trace.c:520
+#3  0x000000000069386a in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:480
+#4  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+free block list [0]:
+#0  debugBelch (s=0x6eea7a "free block list [%d]:\n") at rts/RtsMessages.c:94
+#1  0x0000000000692a8f in checkFreeListSanity () at rts/sm/BlockAlloc.c:697
+#2  0x00000000006983b0 in checkSanity (after_gc=rtsTrue, major_gc=rtsTrue) at rts/sm/Sanity.c:754
+#3  0x0000000000693d45 in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:666
+#4  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+----------------------------------------------------------
+  Gen     Max  Mut-list  Blocks    Large     Live     Slop
+       Blocks     Bytes          Objects                  
+----------------------------------------------------------
+    0     256         0      11        4    34832    10224
+    1     256         3       1        0     1256     2840
+----------------------------------------------------------
+                                            36088    13064
+----------------------------------------------------------
+#0  debugBelch (s=0x6eccd0 '-' <repeats 58 times>, "\n") at rts/RtsMessages.c:94
+#1  0x000000000068c5c3 in statDescribeGens () at rts/Stats.c:850
+#2  0x0000000000693e4e in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:698
+#3  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#4  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+Memory inventory:
+  gen 0 blocks :    11 blocks (0 MB)
+  gen 1 blocks :     2 blocks (0 MB)
+  nursery      :   128 blocks (0 MB)
+  retainer     :     0 blocks (0 MB)
+  arena blocks :     0 blocks (0 MB)
+  exec         :     0 blocks (0 MB)
+  free         :   111 blocks (0 MB)
+  total        :   252 blocks (0 MB)
+#0  debugBelch (s=0x6ef390 "  total        : %5lu blocks (%lu MB)\n") at rts/RtsMessages.c:94
+#1  0x0000000000698c95 in memInventory (show=rtsTrue) at rts/sm/Sanity.c:933
+#2  0x0000000000693e5b in GarbageCollect (force_major_gc=rtsFalse, do_heap_census=rtsFalse, gc_type=0, cap=0x94ee00) at rts/sm/GC.c:714
+#3  0x0000000000689629 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1531
+#4  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+cap 0: finished GC
+#0  debugBelch (s=0x6ee4d5 "cap %d: finished GC\n") at rts/RtsMessages.c:94
+#1  0x0000000000690d11 in traceGcEvent_stderr (cap=0x94ee00, tag=10) at rts/Trace.c:274
+#2  0x0000000000690db1 in traceGcEvent_ (cap=0x94ee00, tag=10) at rts/Trace.c:298
+#3  0x00000000006883a0 in traceEventGcEnd (cap=0x94ee00) at rts/Trace.h:449
+#4  0x0000000000689635 in scheduleDoGC (cap=0x94ee00, task=0x9711d0, force_major=rtsFalse) at rts/Schedule.c:1533
+#5  0x000000000068a0aa in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2273
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+removed cap 0 from capset 0
+#0  debugBelch (s=0x6ee610 "removed cap %lu from capset %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690e7f in traceCapsetEvent_ (tag=28, capset=0, info=0) at rts/Trace.c:328
+#2  0x0000000000680bba in traceCapsetRemoveCap (capset=0, capno=0) at rts/Trace.h:520
+#3  0x0000000000680e8a in shutdownCapability (cap=0x94ee00, task=0x9711d0, safe=rtsFalse) at rts/Capability.c:930
+#4  0x0000000000680f05 in shutdownCapabilities (task=0x9711d0, safe=rtsFalse) at rts/Capability.c:940
+#5  0x000000000068a0f4 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2279
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+removed cap 0 from capset 1
+#0  debugBelch (s=0x6ee610 "removed cap %lu from capset %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690e7f in traceCapsetEvent_ (tag=28, capset=1, info=0) at rts/Trace.c:328
+#2  0x0000000000680bba in traceCapsetRemoveCap (capset=1, capno=0) at rts/Trace.h:520
+#3  0x0000000000680ea0 in shutdownCapability (cap=0x94ee00, task=0x9711d0, safe=rtsFalse) at rts/Capability.c:931
+#4  0x0000000000680f05 in shutdownCapabilities (task=0x9711d0, safe=rtsFalse) at rts/Capability.c:940
+#5  0x000000000068a0f4 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2279
+#6  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#7  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#8  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+deleted capset 0
+#0  debugBelch (s=0x6ee5d7 "deleted capset %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690e49 in traceCapsetEvent_ (tag=26, capset=0, info=0) at rts/Trace.c:321
+#2  0x0000000000680b76 in traceCapsetDelete (capset=0) at rts/Trace.h:506
+#3  0x0000000000680f1e in shutdownCapabilities (task=0x9711d0, safe=rtsFalse) at rts/Capability.c:942
+#4  0x000000000068a0f4 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2279
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+deleted capset 1
+#0  debugBelch (s=0x6ee5d7 "deleted capset %lu\n") at rts/RtsMessages.c:94
+#1  0x0000000000690e49 in traceCapsetEvent_ (tag=26, capset=1, info=0) at rts/Trace.c:321
+#2  0x0000000000680b76 in traceCapsetDelete (capset=1) at rts/Trace.h:506
+#3  0x0000000000680f28 in shutdownCapabilities (task=0x9711d0, safe=rtsFalse) at rts/Capability.c:943
+#4  0x000000000068a0f4 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2279
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+task exiting
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ece17 "task exiting", ap=0x7fffffffde38) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ece17 "task exiting") at rts/Trace.c:520
+#3  0x000000000068d390 in boundTaskExiting (task=0x9711d0) at rts/Task.c:299
+#4  0x000000000068a100 in exitScheduler (wait_foreign=rtsFalse) at rts/Schedule.c:2281
+#5  0x0000000000683fe5 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:326
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+exitHpc
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6f9859 "exitHpc", ap=0x7fffffffde68) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6f9859 "exitHpc") at rts/Trace.c:520
+#3  0x00000000006baf3f in exitHpc () at rts/Hpc.c:378
+#4  0x0000000000684026 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:353
+#5  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#6  0x000000000068372b in real_main () at rts/RtsMain.c:88
+
+freeing task manager, 0 tasks still running
+#0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
+#1  0x000000000069133b in trace_stderr (msg=0x6ecd70 "freeing task manager, %d tasks still running", ap=0x7fffffffde38) at rts/Trace.c:507
+#2  0x00000000006913e7 in trace_ (msg=0x6ecd70 "freeing task manager, %d tasks still running") at rts/Trace.c:520
+#3  0x000000000068cfdb in freeTaskManager () at rts/Task.c:98
+#4  0x000000000068a10f in freeScheduler () at rts/Schedule.c:2290
+#5  0x0000000000684030 in hs_exit_ (wait_foreign=rtsFalse) at rts/RtsStartup.c:360
+#6  0x00000000006840f4 in shutdownHaskellAndExit (n=0) at rts/RtsStartup.c:461
+#7  0x000000000068372b in real_main () at rts/RtsMain.c:88
