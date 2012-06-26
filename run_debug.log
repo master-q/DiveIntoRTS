@@ -1,0 +1,283 @@
+./Main +RTS -V0 -Ds -Di -Dw -DG -Dg -Db -DS -Dt -Dp -Da -Dl -Dm -Dz -Dc -Dr
+created capset 0 of type 2
+created capset 1 of type 3
+assigned cap 0 to capset 0
+assigned cap 0 to capset 1
+allocated 1 megablock(s) at 0x2aedbbf00000
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 124 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 124 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 123 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 122 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 121 blocks
+free block list [7]:
+free block list [8]:
+----------------------------------------------------------
+  Gen     Max  Mut-list  Blocks    Large     Live     Slop
+       Blocks     Bytes          Objects                  
+----------------------------------------------------------
+    0       0         0       1        0        0     4096
+    1       0         0       1        0        0     4096
+----------------------------------------------------------
+                                                0     8192
+----------------------------------------------------------
+
+new task (taskCount: 1)
+cap 0: created thread 1
+cap 0: thread 1 appended to run queue
+new bound thread (1)
+cap 0: schedule()
+cap 0: running thread 1 (ThreadRunGHC)
+stg_ap_v_ret... PAP/1(0x920c2a, 0x90c870)
+New weak pointer at 0x2aedbbf04050
+words_to_squeeze: 0, weight: 0, squeeze: NO
+stg_ap_0_ret... base:GHC.MVar.MVar(0x2aedbbf04130)
+stg_ap_v_ret... THUNK(0x4041d8)
+stg_ap_v_ret... PAP/1(0x9373ea, 0x90c851)
+words_to_squeeze: 0, weight: 0, squeeze: NO
+words_to_squeeze: 0, weight: 0, squeeze: NO
+stg_ap_0_ret... ghc-prim:GHC.Tuple.(,)(0x2aedbbf04269, 0x2aedbbf0425a)
+words_to_squeeze: 0, weight: 0, squeeze: NO
+words_to_squeeze: 0, weight: 0, squeeze: NO
+stg_ap_0_ret... ghc-prim:GHC.Types.:(0x2aedbbf043f1, 0x2aedbbf043da)
+stg_ap_0_ret... THUNK(0x424990, 0x910159)
+stg_ap_v_ret... THUNK(0x457d50, 0x2aedbbf042a0, 0x9426e0, 0x941c78)
+stg_ap_0_ret... FUN/3(0x5c35b8)
+stg_ap_pp_ret... FUN/3(0x5c35b8)
+stg_ap_v_ret... PAP/1(0x94192b, 0x941c78, 0x2aedbbf042a0)
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 119 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 116 blocks
+free block list [7]:
+free block list [8]:
+stg_ap_0_ret... FUN/2(0x5c6468)
+stg_ap_pv_ret... FUN/2(0x5c6468)
+New weak pointer at 0x2aedbbf06198
+stg_ap_0_ret... base:GHC.IO.Handle.Types.FileHandle(0x913fd8, 0x2aedbbf060c0)
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf061f2, 0x2aedbbf060e0)
+stg_ap_p_ret... FUN/2(0x45bb90, 0x2aedbbf0420a)
+stg_ap_v_ret... PAP/1(0x2aedbbf061f2, 0x2aedbbf060e0)
+stg_ap_0_ret... base:GHC.IO.FD.FD(0x1#, (nil)#)
+cap 0: thread 1 stopped (finished)
+bound thread (1) finished
+task exiting
+new task (taskCount: 1)
+cap 0: created thread 2
+cap 0: thread 2 appended to run queue
+new bound thread (2)
+cap 0: schedule()
+cap 0: running thread 2 (ThreadRunGHC)
+stg_ap_v_ret... FUN/1(0x4d5cb0)
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf06492, 0x2aedbbf06299)
+stg_ap_p_ret... FUN/2(0x45bb90, 0x914852)
+stg_ap_v_ret... PAP/1(0x2aedbbf06492, 0x2aedbbf06299)
+stg_ap_0_ret... FUN/3(0x5cad18)
+stg_ap_ppv_ret... FUN/3(0x5cad18)
+cap 0: thread 2 stopped (suspended while making a foreign call)
+words_to_squeeze: 0, weight: 0, squeeze: NO
+cap 0: running thread 2 (ThreadRunGHC)
+Hwords_to_squeeze: 0, weight: 0, squeeze: NO
+stg_ap_v_ret... THUNK(0x457d50, 0x2aedbbf06660, 0x9426e0, 0x941c90)
+stg_ap_0_ret... FUN/3(0x5c35b8)
+stg_ap_pp_ret... FUN/3(0x5c35b8)
+stg_ap_v_ret... PAP/1(0x94192b, 0x941c90, 0x2aedbbf06660)
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 114 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+New weak pointer at 0x2aedbbf06968
+stg_ap_0_ret... base:GHC.IO.Handle.Types.FileHandle(0x913f30, 0x2aedbbf06890)
+stg_ap_v_ret... THUNK(0x6a8a78, 0x2aedbbf069c2, 0x2aedbbf068b0)
+stg_ap_p_ret... FUN/2(0x45bb90, 0x914852)
+stg_ap_v_ret... PAP/1(0x2aedbbf069c2, 0x2aedbbf068b0)
+stg_ap_0_ret... base:GHC.IO.FD.FD(0x2#, (nil)#)
+cap 0: thread 2 stopped (finished)
+bound thread (2) finished
+task exiting
+new task (taskCount: 1)
+all threads:
+threads on capability 0:
+other threads:
+deleting all threads
+cap 0: starting GC
+GC (gen 1): 552 KB to collect, 1 MB in use, using 1 thread(s)
+Memory inventory:
+  gen 0 blocks :    11 blocks (0 MB)
+  gen 1 blocks :     2 blocks (0 MB)
+  nursery      :   128 blocks (0 MB)
+  retainer     :     0 blocks (0 MB)
+  arena blocks :     0 blocks (0 MB)
+  exec         :     0 blocks (0 MB)
+  free         :   111 blocks (0 MB)
+  total        :   252 blocks (0 MB)
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+group at 0x2aedbbfff000, length 1 blocks
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+cap 0: GC working
+STM: 0x94bb08 : lock_stm()
+STM: stmPreGCHook
+STM: 0x94bb08 : unlock_stm()
+scavenging static objects
+scavenging block 0x2aedbbffd000 (gen 1) @ 0x2aedbbffd000
+   scavenged 1192 bytes
+scavenging block 0x2aedbbffe000 (gen 0) @ 0x2aedbbffe000
+   scavenged 2048 bytes
+scavenging static objects
+scavenging block 0x2aedbbffd000 (gen 1) @ 0x2aedbbffd4a8
+   scavenged 64 bytes
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+weak pointer still alive at 0x2aedbbffe000 -> 0x2aedbbffd1d0
+weak pointer still alive at 0x2aedbbffe030 -> 0x2aedbbffd0f0
+scavenging block 0x2aedbbffe000 (gen 0) @ 0x2aedbbffe800
+   scavenged 80 bytes
+scavenging static objects
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+cap 0: GC idle
+0 GC threads still running
+cap 0: GC done
+mut_list_size: 24 (0 vars, 0 arrays, 0 MVARs, 0 others)
+free block list [0]:
+free block list [1]:
+free block list [2]:
+free block list [3]:
+free block list [4]:
+free block list [5]:
+free block list [6]:
+group at 0x2aedbbf84000, length 111 blocks
+free block list [7]:
+free block list [8]:
+----------------------------------------------------------
+  Gen     Max  Mut-list  Blocks    Large     Live     Slop
+       Blocks     Bytes          Objects                  
+----------------------------------------------------------
+    0     256         0      11        4    34832    10224
+    1     256         3       1        0     1256     2840
+----------------------------------------------------------
+                                            36088    13064
+----------------------------------------------------------
+
+Memory inventory:
+  gen 0 blocks :    11 blocks (0 MB)
+  gen 1 blocks :     2 blocks (0 MB)
+  nursery      :   128 blocks (0 MB)
+  retainer     :     0 blocks (0 MB)
+  arena blocks :     0 blocks (0 MB)
+  exec         :     0 blocks (0 MB)
+  free         :   111 blocks (0 MB)
+  total        :   252 blocks (0 MB)
+cap 0: finished GC
+removed cap 0 from capset 0
+removed cap 0 from capset 1
+deleted capset 0
+deleted capset 1
+task exiting
+exitHpc
+freeing task manager, 0 tasks still running
