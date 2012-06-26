@@ -4,8 +4,8 @@
 ./Main +RTS -V0 -Ds -Di -Dw -DG -Dg -Db -DS -Dt -Dp -Da -Dl -Dm -Dz -Dc -Dr
 created capset 0 of type 2 <= initCapabilities()
 created capset 1 of type 3 <= initCapabilities()
-assigned cap 0 to capset 0 <= initCapability()
-assigned cap 0 to capset 1 <= initCapability()
+assigned cap 0 to capset 0 <= initCapability() MainCapabilityを作成
+assigned cap 0 to capset 1 <= initCapability() Capabilityは1つしか作られない
 allocated 1 megablock(s) at 0x2aedbbf00000
 <= ↑getMBlocks()
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
@@ -96,7 +96,7 @@ free block list [8]:
 #4  0x0000000000683664 in real_main () at rts/RtsMain.c:47
 
 new task (taskCount: 1)
-<= ↑newBoundTask()
+<= ↑newBoundTask() Task構造体初期化 実体はグローバル変数my_task
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ecdf3 "new task (taskCount: %d)", ap=0x7fffffffde88) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ecdf3 "new task (taskCount: %d)") at rts/Trace.c:520
@@ -105,7 +105,7 @@ new task (taskCount: 1)
 #5  0x0000000000683669 in real_main () at rts/RtsMain.c:62
 
 cap 0: created thread 1
-<= ↑createThread()
+<= ↑createThread() StgTSOを作る
 #0  debugBelch (s=0x6ee2c7 "cap %d: created thread %lu\n") at rts/RtsMessages.c:94
 #1  0x0000000000690a70 in traceSchedEvent_stderr (cap=0x94ee00, tag=0, tso=0x7ffff6c05390, info1=111, info2=0) at rts/Trace.c:202
 #2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=0, tso=0x7ffff6c05390, info1=111, info2=0) at rts/Trace.c:249
@@ -115,8 +115,10 @@ cap 0: created thread 1
 #6  0x00000000006c758b in rts_evalLazyIO (cap=0x7fffffffdfa0, p=0x90c8a0, ret=0x0) at rts/RtsAPI.c:496
 #7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
+<= StgTSOスタックにstg_ap_v_info, ZCMain_main_closure, stg_enter_infoをつむ
+
 cap 0: thread 1 appended to run queue
-<= ↑appendToRunQueue()
+<= ↑appendToRunQueue() Capabilityのrun queueにStgTSOをつむ
 #0  debugBelch (s=0x6ee310 "cap %d: thread %lu appended to run queue\n") at rts/RtsMessages.c:94
 #1  0x0000000000690ad7 in traceSchedEvent_stderr (cap=0x94ee00, tag=3, tso=0x7ffff6c05390, info1=0, info2=0) at rts/Trace.c:210
 #2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=3, tso=0x7ffff6c05390, info1=0, info2=0) at rts/Trace.c:249
@@ -127,7 +129,7 @@ cap 0: thread 1 appended to run queue
 #7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
 new bound thread (1)
-<= ↑scheduleWaitThread()
+<= ↑scheduleWaitThread() 表示しているidはStgTSOのid
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ec267 "new bound thread (%lu)", ap=0x7fffffffde38) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ec267 "new bound thread (%lu)") at rts/Trace.c:520
@@ -136,7 +138,7 @@ new bound thread (1)
 #5  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
 cap 0: schedule()
-<= ↑schedule()
+<= ↑schedule() スケジュール実行開始
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ebf5f "cap %d: schedule()", ap=0x7fffffffdde8) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ebf5f "cap %d: schedule()") at rts/Trace.c:520
@@ -146,7 +148,7 @@ cap 0: schedule()
 #6  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
 cap 0: running thread 1 (ThreadRunGHC)
-<= ↑schedule()
+<= ↑schedule() id 1のStgTSOをrun queueから取り出しで実行開始
 #0  debugBelch (s=0x6ee2e8 "cap %d: running thread %lu (%s)\n") at rts/RtsMessages.c:94
 #1  0x0000000000690aae in traceSchedEvent_stderr (cap=0x94ee00, tag=1, tso=0x7ffff6c05390, info1=1, info2=0) at rts/Trace.c:206
 #2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=1, tso=0x7ffff6c05390, info1=1, info2=0) at rts/Trace.c:249
@@ -355,6 +357,7 @@ stg_ap_0_ret... base:GHC.IO.FD.FD(0x1#, (nil)#)
 #3  0x0000000000000000 in ?? ()
 
 cap 0: thread 1 stopped (finished)
+<= StgTSOが実行停止した 要因は"finished" つまりやること全部終わった
 #0  debugBelch (s=0x6ee3d8 "cap %d: thread %lu stopped (%s)\n") at rts/RtsMessages.c:94
 #1  0x0000000000690b9b in traceSchedEvent_stderr (cap=0x94ee00, tag=2, tso=0x7ffff6c05390, info1=5, info2=0) at rts/Trace.c:227
 #2  0x0000000000690c2d in traceSchedEvent_ (cap=0x94ee00, tag=2, tso=0x7ffff6c05390, info1=5, info2=0) at rts/Trace.c:249
@@ -365,6 +368,7 @@ cap 0: thread 1 stopped (finished)
 #7  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
 bound thread (1) finished
+<= schedule()から抜けた 単にStgTSOのidを表示しているだけ
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ec27e "bound thread (%lu) finished", ap=0x7fffffffde38) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ec27e "bound thread (%lu) finished") at rts/Trace.c:520
@@ -373,6 +377,7 @@ bound thread (1) finished
 #5  0x0000000000683688 in real_main () at rts/RtsMain.c:63
 
 task exiting
+<= cap->running_taskを止める task->stopped = rtsTrueするだけ
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ece17 "task exiting", ap=0x7fffffffde78) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ece17 "task exiting") at rts/Trace.c:520
@@ -381,6 +386,7 @@ task exiting
 #5  0x00000000006836b0 in real_main () at rts/RtsMain.c:66
 
 new task (taskCount: 1)
+<= baseパッケージのGHC.TopHandler flushStdHandlesを呼び出す
 #0  debugBelch (s=0x6ee879 "\n") at rts/RtsMessages.c:94
 #1  0x000000000069133b in trace_stderr (msg=0x6ecdf3 "new task (taskCount: %d)", ap=0x7fffffffde28) at rts/Trace.c:507
 #2  0x00000000006913e7 in trace_ (msg=0x6ecdf3 "new task (taskCount: %d)") at rts/Trace.c:520
