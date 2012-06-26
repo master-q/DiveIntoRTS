@@ -1,0 +1,8 @@
+==================== STG syntax: ====================
+sat_sfC = NO_CCS GHC.Types.C#! ['H'];
+SRT(sat_sfC): []
+Main.main = \u srt:(0,*bitmap*) [] System.IO.putChar sat_sfC;
+SRT(Main.main): [System.IO.putChar, sat_sfC]
+:Main.main =
+    \u srt:(0,*bitmap*) [] GHC.TopHandler.runMainIO Main.main;
+SRT(:Main.main): [GHC.TopHandler.runMainIO, Main.main]

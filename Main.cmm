@@ -1,0 +1,101 @@
+==================== Cmm ====================
+[section "data" { __stginit_Main:
+ },
+ __stginit_ZCMain()
+         { update_frame: <none>
+         }
+ }]
+ 
+-------------------
+ 
+[section "data" {
+     sfC_closure:
+         const ghczmprim_GHCziTypes_Czh_static_info;
+         const 72;
+ }]
+ 
+-------------------
+ 
+[section "relreadonly" {
+     Main_main_srt:
+         const base_SystemziIO_putChar_closure;
+         const sfC_closure;
+ },
+ section "data" {
+     Main_main_closure:
+         const Main_main_info;
+         const 0;
+         const 0;
+         const 0;
+ },
+ Main_main_info()
+         { update_frame: <none>
+           label: Main_main_info
+           rep:HeapRep static { Thunk }
+         }
+     cfM:
+         if (Sp - 16 < SpLim) goto cfO;
+         Hp = Hp + 16;
+         if (Hp > HpLim) goto cfQ;
+         I64[Hp - 8] = stg_CAF_BLACKHOLE_info;
+         I64[Hp + 0] = CurrentTSO;
+         (_cfR::I64,) = foreign "ccall"
+           newCAF((BaseReg, PtrHint), (R1, PtrHint), (Hp - 8, PtrHint));
+         if (_cfR::I64 == 0) goto cfS;
+         goto cfT;
+     cfO: jump stg_gc_enter_1 ();
+     cfQ:
+         HpAlloc = 16;
+         goto cfO;
+     cfS: jump I64[R1] ();
+     cfT:
+         I64[Sp - 16] = stg_bh_upd_frame_info;
+         I64[Sp - 8] = Hp - 8;
+         R1 = base_SystemziIO_putChar_closure;
+         R2 = sfC_closure+1;
+         Sp = Sp - 16;
+         jump stg_ap_p_fast ();
+ }]
+ 
+-------------------
+ 
+[section "relreadonly" {
+     ZCMain_main_srt:
+         const base_GHCziTopHandler_runMainIO_closure;
+         const Main_main_closure;
+ },
+ section "data" {
+     ZCMain_main_closure:
+         const ZCMain_main_info;
+         const 0;
+         const 0;
+         const 0;
+ },
+ ZCMain_main_info()
+         { update_frame: <none>
+           label: ZCMain_main_info
+           rep:HeapRep static { Thunk }
+         }
+     cg2:
+         if (Sp - 16 < SpLim) goto cg4;
+         Hp = Hp + 16;
+         if (Hp > HpLim) goto cg6;
+         I64[Hp - 8] = stg_CAF_BLACKHOLE_info;
+         I64[Hp + 0] = CurrentTSO;
+         (_cg7::I64,) = foreign "ccall"
+           newCAF((BaseReg, PtrHint), (R1, PtrHint), (Hp - 8, PtrHint));
+         if (_cg7::I64 == 0) goto cg8;
+         goto cg9;
+     cg4: jump stg_gc_enter_1 ();
+     cg6:
+         HpAlloc = 16;
+         goto cg4;
+     cg8: jump I64[R1] ();
+     cg9:
+         I64[Sp - 16] = stg_bh_upd_frame_info;
+         I64[Sp - 8] = Hp - 8;
+         R1 = base_GHCziTopHandler_runMainIO_closure;
+         R2 = Main_main_closure;
+         Sp = Sp - 16;
+         jump stg_ap_p_fast ();
+ }]
