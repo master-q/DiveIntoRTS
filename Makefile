@@ -1,4 +1,4 @@
-all: Main Main_keeptmp
+all: Main
 Main: Main.hs
 	/usr/local/ghc7.4.1/bin/ghc -eventlog -debug -rtsopts Main.hs
 
@@ -14,6 +14,6 @@ run_keeptmp: Main_keeptmp
 	./Main_keeptmp
 
 clean:
-	rm -f Main Main_keeptmp *.o *.hi *~
+	rm -f Main_keeptmp *.o *.hi *~
 
 .PHONY: clean run_debug run_keeptmp
