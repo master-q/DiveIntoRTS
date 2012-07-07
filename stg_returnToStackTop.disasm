@@ -1,23 +1,23 @@
 00000000006a7398 <stg_returnToStackTop>:
-  6a7398:	49 8b 85 a0 00 00 00 	mov    0xa0(%r13),%rax
-  6a739f:	48 8b 40 18          	mov    0x18(%rax),%rax
-  6a73a3:	48 8b 68 10          	mov    0x10(%rax),%rbp
-  6a73a7:	4c 8d b8 c0 00 00 00 	lea    0xc0(%rax),%r15
-  6a73ae:	49 c7 85 c0 00 00 00 	movq   $0x0,0xc0(%r13)
+  6a7398:	49 8b 85 a0 00 00 00 	mov    0xa0(%r13),%rax # rax = StgRegTable#rCurrentTSO
+  6a739f:	48 8b 40 18          	mov    0x18(%rax),%rax # rax = StgTSO#stackobj
+  6a73a3:	48 8b 68 10          	mov    0x10(%rax),%rbp # rbp = StgStack#sp
+  6a73a7:	4c 8d b8 c0 00 00 00 	lea    0xc0(%rax),%r15 # ?????
+  6a73ae:	49 c7 85 c0 00 00 00 	movq   $0x0,0xc0(%r13) # StgRegTable#rHpAlloc = 0
   6a73b5:	00 00 00 00 
-  6a73b9:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax
-  6a73c0:	48 8b 40 08          	mov    0x8(%rax),%rax
-  6a73c4:	4c 8d 60 f8          	lea    -0x8(%rax),%r12
-  6a73c8:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax
-  6a73cf:	48 63 40 30          	movslq 0x30(%rax),%rax
-  6a73d3:	48 c1 e0 0c          	shl    $0xc,%rax
-  6a73d7:	48 ff c8             	dec    %rax
+  6a73b9:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax # rax = StgRegTable#rCurrentNursery
+  6a73c0:	48 8b 40 08          	mov    0x8(%rax),%rax  # rax = bdescr#free
+  6a73c4:	4c 8d 60 f8          	lea    -0x8(%rax),%r12 # r12 = bdescr#free - 1
+  6a73c8:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax # rax = StgRegTable#rCurrentNursery
+  6a73cf:	48 63 40 30          	movslq 0x30(%rax),%rax # rax = bdescr#blocks
+  6a73d3:	48 c1 e0 0c          	shl    $0xc,%rax       # rax *= BLOCK_SIZE_W
+  6a73d7:	48 ff c8             	dec    %rax            # rax -= 1
   6a73da:	49 8b 8d b0 00 00 00 	mov    0xb0(%r13),%rcx
-  6a73e1:	48 8b 09             	mov    (%rcx),%rcx
+  6a73e1:	48 8b 09             	mov    (%rcx),%rcx     # rcx = StgRegTable#rCurrentNursery
   6a73e4:	48 01 c1             	add    %rax,%rcx
-  6a73e7:	49 89 8d 90 00 00 00 	mov    %rcx,0x90(%r13)
-  6a73ee:	4d 85 e4             	test   %r12,%r12
-  6a73f1:	0f 85 29 02 00 00    	jne    6a7620 <stg_returnToStackTop+0x288>
+  6a73e7:	49 89 8d 90 00 00 00 	mov    %rcx,0x90(%r13) # StgRegTable.rHpLim = rcx
+  6a73ee:	4d 85 e4             	test   %r12,%r12 # ASSERT(Hp != 0)
+  6a73f1:	0f 85 29 02 00 00    	jne    6a7620 <stg_returnToStackTop+0x288> # jump label_A
   6a73f7:	49 89 75 10          	mov    %rsi,0x10(%r13)
   6a73fb:	49 89 7d 18          	mov    %rdi,0x18(%r13)
   6a73ff:	4d 89 45 20          	mov    %r8,0x20(%r13)
@@ -44,8 +44,8 @@
   6a7466:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
   6a746c:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
   6a7472:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
-  6a7478:	48 85 ed             	test   %rbp,%rbp
-  6a747b:	0f 85 a4 01 00 00    	jne    6a7625 <stg_returnToStackTop+0x28d>
+  6a7478:	48 85 ed             	test   %rbp,%rbp        # label_A: ASSERT(Sp != 0)
+  6a747b:	0f 85 a4 01 00 00    	jne    6a7625 <stg_returnToStackTop+0x28d> # jump label_B
   6a7481:	49 89 75 10          	mov    %rsi,0x10(%r13)
   6a7485:	49 89 7d 18          	mov    %rdi,0x18(%r13)
   6a7489:	4d 89 45 20          	mov    %r8,0x20(%r13)
@@ -72,8 +72,8 @@
   6a74f0:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
   6a74f6:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
   6a74fc:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
-  6a7502:	4d 85 ff             	test   %r15,%r15
-  6a7505:	0f 85 1f 01 00 00    	jne    6a762a <stg_returnToStackTop+0x292>
+  6a7502:	4d 85 ff             	test   %r15,%r15        # label_B: ??? ASSERT(SpLim != 0) ???
+  6a7505:	0f 85 1f 01 00 00    	jne    6a762a <stg_returnToStackTop+0x292> # jump label_C
   6a750b:	49 89 75 10          	mov    %rsi,0x10(%r13)
   6a750f:	49 89 7d 18          	mov    %rdi,0x18(%r13)
   6a7513:	4d 89 45 20          	mov    %r8,0x20(%r13)
@@ -100,9 +100,9 @@
   6a757a:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
   6a7580:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
   6a7586:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
-  6a758c:	49 8d 87 58 ff ff ff 	lea    -0xa8(%r15),%rax
-  6a7593:	48 39 e8             	cmp    %rbp,%rax
-  6a7596:	0f 86 93 00 00 00    	jbe    6a762f <stg_returnToStackTop+0x297>
+  6a758c:	49 8d 87 58 ff ff ff 	lea    -0xa8(%r15),%rax # label_C
+  6a7593:	48 39 e8             	cmp    %rbp,%rax        # ??? ASSERT(SpLim - WDS(RESERVED_STACK_WORDS) <= Sp) ???
+  6a7596:	0f 86 93 00 00 00    	jbe    6a762f <stg_returnToStackTop+0x297> # jump label_D
   6a759c:	49 89 75 10          	mov    %rsi,0x10(%r13)
   6a75a0:	49 89 7d 18          	mov    %rdi,0x18(%r13)
   6a75a4:	4d 89 45 20          	mov    %r8,0x20(%r13)
@@ -129,9 +129,9 @@
   6a760b:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
   6a7611:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
   6a7617:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
-  6a761d:	ff 65 00             	jmpq   *0x0(%rbp)
-  6a7620:	e9 53 fe ff ff       	jmpq   6a7478 <stg_returnToStackTop+0xe0>
-  6a7625:	e9 d8 fe ff ff       	jmpq   6a7502 <stg_returnToStackTop+0x16a>
-  6a762a:	e9 5d ff ff ff       	jmpq   6a758c <stg_returnToStackTop+0x1f4>
-  6a762f:	eb ec                	jmp    6a761d <stg_returnToStackTop+0x285>
+  6a761d:	ff 65 00             	jmpq   *0x0(%rbp)       # label_D: jump %ENTRY_CODE(Sp(0))
+  6a7620:	e9 53 fe ff ff       	jmpq   6a7478 <stg_returnToStackTop+0xe0>  # jump label_A
+  6a7625:	e9 d8 fe ff ff       	jmpq   6a7502 <stg_returnToStackTop+0x16a> # jump label_B
+  6a762a:	e9 5d ff ff ff       	jmpq   6a758c <stg_returnToStackTop+0x1f4> # jump label_C
+  6a762f:	eb ec                	jmp    6a761d <stg_returnToStackTop+0x285> # jump label_D
   6a7631:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
