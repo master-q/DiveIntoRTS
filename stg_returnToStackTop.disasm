@@ -1,0 +1,137 @@
+00000000006a7398 <stg_returnToStackTop>:
+  6a7398:	49 8b 85 a0 00 00 00 	mov    0xa0(%r13),%rax
+  6a739f:	48 8b 40 18          	mov    0x18(%rax),%rax
+  6a73a3:	48 8b 68 10          	mov    0x10(%rax),%rbp
+  6a73a7:	4c 8d b8 c0 00 00 00 	lea    0xc0(%rax),%r15
+  6a73ae:	49 c7 85 c0 00 00 00 	movq   $0x0,0xc0(%r13)
+  6a73b5:	00 00 00 00 
+  6a73b9:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax
+  6a73c0:	48 8b 40 08          	mov    0x8(%rax),%rax
+  6a73c4:	4c 8d 60 f8          	lea    -0x8(%rax),%r12
+  6a73c8:	49 8b 85 b0 00 00 00 	mov    0xb0(%r13),%rax
+  6a73cf:	48 63 40 30          	movslq 0x30(%rax),%rax
+  6a73d3:	48 c1 e0 0c          	shl    $0xc,%rax
+  6a73d7:	48 ff c8             	dec    %rax
+  6a73da:	49 8b 8d b0 00 00 00 	mov    0xb0(%r13),%rcx
+  6a73e1:	48 8b 09             	mov    (%rcx),%rcx
+  6a73e4:	48 01 c1             	add    %rax,%rcx
+  6a73e7:	49 89 8d 90 00 00 00 	mov    %rcx,0x90(%r13)
+  6a73ee:	4d 85 e4             	test   %r12,%r12
+  6a73f1:	0f 85 29 02 00 00    	jne    6a7620 <stg_returnToStackTop+0x288>
+  6a73f7:	49 89 75 10          	mov    %rsi,0x10(%r13)
+  6a73fb:	49 89 7d 18          	mov    %rdi,0x18(%r13)
+  6a73ff:	4d 89 45 20          	mov    %r8,0x20(%r13)
+  6a7403:	4d 89 4d 28          	mov    %r9,0x28(%r13)
+  6a7407:	f3 41 0f 11 4d 50    	movss  %xmm1,0x50(%r13)
+  6a740d:	f3 41 0f 11 55 54    	movss  %xmm2,0x54(%r13)
+  6a7413:	f3 41 0f 11 5d 58    	movss  %xmm3,0x58(%r13)
+  6a7419:	f3 41 0f 11 65 5c    	movss  %xmm4,0x5c(%r13)
+  6a741f:	f2 41 0f 11 6d 60    	movsd  %xmm5,0x60(%r13)
+  6a7425:	f2 41 0f 11 75 68    	movsd  %xmm6,0x68(%r13)
+  6a742b:	31 ff                	xor    %edi,%edi
+  6a742d:	be 5d 00 00 00       	mov    $0x5d,%esi
+  6a7432:	48 83 ec 08          	sub    $0x8,%rsp
+  6a7436:	b8 00 00 00 00       	mov    $0x0,%eax
+  6a743b:	e8 22 c4 fd ff       	callq  683862 <_assertFail>
+  6a7440:	48 83 c4 08          	add    $0x8,%rsp
+  6a7444:	49 8b 75 10          	mov    0x10(%r13),%rsi
+  6a7448:	49 8b 7d 18          	mov    0x18(%r13),%rdi
+  6a744c:	4d 8b 45 20          	mov    0x20(%r13),%r8
+  6a7450:	4d 8b 4d 28          	mov    0x28(%r13),%r9
+  6a7454:	f3 41 0f 10 4d 50    	movss  0x50(%r13),%xmm1
+  6a745a:	f3 41 0f 10 55 54    	movss  0x54(%r13),%xmm2
+  6a7460:	f3 41 0f 10 5d 58    	movss  0x58(%r13),%xmm3
+  6a7466:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
+  6a746c:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
+  6a7472:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
+  6a7478:	48 85 ed             	test   %rbp,%rbp
+  6a747b:	0f 85 a4 01 00 00    	jne    6a7625 <stg_returnToStackTop+0x28d>
+  6a7481:	49 89 75 10          	mov    %rsi,0x10(%r13)
+  6a7485:	49 89 7d 18          	mov    %rdi,0x18(%r13)
+  6a7489:	4d 89 45 20          	mov    %r8,0x20(%r13)
+  6a748d:	4d 89 4d 28          	mov    %r9,0x28(%r13)
+  6a7491:	f3 41 0f 11 4d 50    	movss  %xmm1,0x50(%r13)
+  6a7497:	f3 41 0f 11 55 54    	movss  %xmm2,0x54(%r13)
+  6a749d:	f3 41 0f 11 5d 58    	movss  %xmm3,0x58(%r13)
+  6a74a3:	f3 41 0f 11 65 5c    	movss  %xmm4,0x5c(%r13)
+  6a74a9:	f2 41 0f 11 6d 60    	movsd  %xmm5,0x60(%r13)
+  6a74af:	f2 41 0f 11 75 68    	movsd  %xmm6,0x68(%r13)
+  6a74b5:	31 ff                	xor    %edi,%edi
+  6a74b7:	be 5d 00 00 00       	mov    $0x5d,%esi
+  6a74bc:	48 83 ec 08          	sub    $0x8,%rsp
+  6a74c0:	b8 00 00 00 00       	mov    $0x0,%eax
+  6a74c5:	e8 98 c3 fd ff       	callq  683862 <_assertFail>
+  6a74ca:	48 83 c4 08          	add    $0x8,%rsp
+  6a74ce:	49 8b 75 10          	mov    0x10(%r13),%rsi
+  6a74d2:	49 8b 7d 18          	mov    0x18(%r13),%rdi
+  6a74d6:	4d 8b 45 20          	mov    0x20(%r13),%r8
+  6a74da:	4d 8b 4d 28          	mov    0x28(%r13),%r9
+  6a74de:	f3 41 0f 10 4d 50    	movss  0x50(%r13),%xmm1
+  6a74e4:	f3 41 0f 10 55 54    	movss  0x54(%r13),%xmm2
+  6a74ea:	f3 41 0f 10 5d 58    	movss  0x58(%r13),%xmm3
+  6a74f0:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
+  6a74f6:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
+  6a74fc:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
+  6a7502:	4d 85 ff             	test   %r15,%r15
+  6a7505:	0f 85 1f 01 00 00    	jne    6a762a <stg_returnToStackTop+0x292>
+  6a750b:	49 89 75 10          	mov    %rsi,0x10(%r13)
+  6a750f:	49 89 7d 18          	mov    %rdi,0x18(%r13)
+  6a7513:	4d 89 45 20          	mov    %r8,0x20(%r13)
+  6a7517:	4d 89 4d 28          	mov    %r9,0x28(%r13)
+  6a751b:	f3 41 0f 11 4d 50    	movss  %xmm1,0x50(%r13)
+  6a7521:	f3 41 0f 11 55 54    	movss  %xmm2,0x54(%r13)
+  6a7527:	f3 41 0f 11 5d 58    	movss  %xmm3,0x58(%r13)
+  6a752d:	f3 41 0f 11 65 5c    	movss  %xmm4,0x5c(%r13)
+  6a7533:	f2 41 0f 11 6d 60    	movsd  %xmm5,0x60(%r13)
+  6a7539:	f2 41 0f 11 75 68    	movsd  %xmm6,0x68(%r13)
+  6a753f:	31 ff                	xor    %edi,%edi
+  6a7541:	be 5d 00 00 00       	mov    $0x5d,%esi
+  6a7546:	48 83 ec 08          	sub    $0x8,%rsp
+  6a754a:	b8 00 00 00 00       	mov    $0x0,%eax
+  6a754f:	e8 0e c3 fd ff       	callq  683862 <_assertFail>
+  6a7554:	48 83 c4 08          	add    $0x8,%rsp
+  6a7558:	49 8b 75 10          	mov    0x10(%r13),%rsi
+  6a755c:	49 8b 7d 18          	mov    0x18(%r13),%rdi
+  6a7560:	4d 8b 45 20          	mov    0x20(%r13),%r8
+  6a7564:	4d 8b 4d 28          	mov    0x28(%r13),%r9
+  6a7568:	f3 41 0f 10 4d 50    	movss  0x50(%r13),%xmm1
+  6a756e:	f3 41 0f 10 55 54    	movss  0x54(%r13),%xmm2
+  6a7574:	f3 41 0f 10 5d 58    	movss  0x58(%r13),%xmm3
+  6a757a:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
+  6a7580:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
+  6a7586:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
+  6a758c:	49 8d 87 58 ff ff ff 	lea    -0xa8(%r15),%rax
+  6a7593:	48 39 e8             	cmp    %rbp,%rax
+  6a7596:	0f 86 93 00 00 00    	jbe    6a762f <stg_returnToStackTop+0x297>
+  6a759c:	49 89 75 10          	mov    %rsi,0x10(%r13)
+  6a75a0:	49 89 7d 18          	mov    %rdi,0x18(%r13)
+  6a75a4:	4d 89 45 20          	mov    %r8,0x20(%r13)
+  6a75a8:	4d 89 4d 28          	mov    %r9,0x28(%r13)
+  6a75ac:	f3 41 0f 11 4d 50    	movss  %xmm1,0x50(%r13)
+  6a75b2:	f3 41 0f 11 55 54    	movss  %xmm2,0x54(%r13)
+  6a75b8:	f3 41 0f 11 5d 58    	movss  %xmm3,0x58(%r13)
+  6a75be:	f3 41 0f 11 65 5c    	movss  %xmm4,0x5c(%r13)
+  6a75c4:	f2 41 0f 11 6d 60    	movsd  %xmm5,0x60(%r13)
+  6a75ca:	f2 41 0f 11 75 68    	movsd  %xmm6,0x68(%r13)
+  6a75d0:	31 ff                	xor    %edi,%edi
+  6a75d2:	be 5d 00 00 00       	mov    $0x5d,%esi
+  6a75d7:	48 83 ec 08          	sub    $0x8,%rsp
+  6a75db:	b8 00 00 00 00       	mov    $0x0,%eax
+  6a75e0:	e8 7d c2 fd ff       	callq  683862 <_assertFail>
+  6a75e5:	48 83 c4 08          	add    $0x8,%rsp
+  6a75e9:	49 8b 75 10          	mov    0x10(%r13),%rsi
+  6a75ed:	49 8b 7d 18          	mov    0x18(%r13),%rdi
+  6a75f1:	4d 8b 45 20          	mov    0x20(%r13),%r8
+  6a75f5:	4d 8b 4d 28          	mov    0x28(%r13),%r9
+  6a75f9:	f3 41 0f 10 4d 50    	movss  0x50(%r13),%xmm1
+  6a75ff:	f3 41 0f 10 55 54    	movss  0x54(%r13),%xmm2
+  6a7605:	f3 41 0f 10 5d 58    	movss  0x58(%r13),%xmm3
+  6a760b:	f3 41 0f 10 65 5c    	movss  0x5c(%r13),%xmm4
+  6a7611:	f2 41 0f 10 6d 60    	movsd  0x60(%r13),%xmm5
+  6a7617:	f2 41 0f 10 75 68    	movsd  0x68(%r13),%xmm6
+  6a761d:	ff 65 00             	jmpq   *0x0(%rbp)
+  6a7620:	e9 53 fe ff ff       	jmpq   6a7478 <stg_returnToStackTop+0xe0>
+  6a7625:	e9 d8 fe ff ff       	jmpq   6a7502 <stg_returnToStackTop+0x16a>
+  6a762a:	e9 5d ff ff ff       	jmpq   6a758c <stg_returnToStackTop+0x1f4>
+  6a762f:	eb ec                	jmp    6a761d <stg_returnToStackTop+0x285>
+  6a7631:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
