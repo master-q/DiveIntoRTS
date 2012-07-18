@@ -1,12 +1,12 @@
 00000000006b1470 <stg_ap_p_fast>:
   6b1470:	48 89 d8             	mov    %rbx,%rax # <=
   6b1473:	48 83 e0 07          	and    $0x7,%rax # <=
-  6b1477:	48 83 f8 01          	cmp    $0x1,%rax # <= GETTAG(R1)==1
-  6b147b:	74 12                	je     6b148f <stg_ap_p_fast+0x1f> # <=
-  6b147d:	48 83 e3 f8          	and    $0xfffffffffffffff8,%rbx # <= R1 = UNTAG(R1)
-  6b1481:	48 8b 03             	mov    (%rbx),%rax # <= info = %GET_STD_INFO(R1)
-  6b1484:	48 63 40 f8          	movslq -0x8(%rax),%rax # <= %INFO_TYPE(info)
-  6b1488:	ff 24 c5 d0 82 6f 00 	jmpq   *0x6f82d0(,%rax,8) # <= jump (a)
+  6b1477:	48 83 f8 01          	cmp    $0x1,%rax # <=
+  6b147b:	74 12                	je     6b148f <stg_ap_p_fast+0x1f> # <= if (GETTAG(R1)==1)
+  6b147d:	48 83 e3 f8          	and    $0xfffffffffffffff8,%rbx    # <= R1 = UNTAG(R1)
+  6b1481:	48 8b 03             	mov    (%rbx),%rax        # <= info = %GET_STD_INFO(R1)
+  6b1484:	48 63 40 f8          	movslq -0x8(%rax),%rax    # <= %INFO_TYPE(info)
+  6b1488:	ff 24 c5 d0 82 6f 00 	jmpq   *0x6f82d0(,%rax,8) # <= jump (a) switch [INVALID_OBJECT .. N_CLOSURE_TYPES] (TO_W_(%INFO_TYPE(info)))
   6b148f:	48 83 c5 00          	add    $0x0,%rbp
   6b1493:	ff 63 ff             	jmpq   *-0x1(%rbx)
   6b1496:	48 83 c5 00          	add    $0x0,%rbp
@@ -16,28 +16,28 @@
   6b14a4:	ff 20                	jmpq   *(%rax)
   6b14a6:	48 89 44 24 40       	mov    %rax,0x40(%rsp) # <= (b) BUG???
   6b14ab:	48 8b 44 24 40       	mov    0x40(%rsp),%rax # <= BUG???
-  6b14b0:	48 83 f8 01          	cmp    $0x1,%rax # <= if (arity == 1)
-  6b14b4:	74 e0                	je     6b1496 <stg_ap_p_fast+0x26> # <=
-  6b14b6:	48 83 c5 f0          	add    $0xfffffffffffffff0,%rbp # <= Sp_adj(-2)
-  6b14ba:	4c 89 75 08          	mov    %r14,0x8(%rbp) # <= W_[Sp+WDS(1)] = R2
-  6b14be:	48 83 f8 08          	cmp    $0x8,%rax # <= if (arity < 8)
-  6b14c2:	0f 82 e0 00 00 00    	jb     6b15a8 <stg_ap_p_fast+0x138> # <= jump (c)
-  6b14c8:	b9 20 00 00 00       	mov    $0x20,%ecx # <= (d)
-  6b14cd:	49 83 c4 20          	add    $0x20,%r12 # <=
-  6b14d1:	4d 3b a5 90 00 00 00 	cmp    0x90(%r13),%r12 # <=
+  6b14b0:	48 83 f8 01          	cmp    $0x1,%rax                   # <=
+  6b14b4:	74 e0                	je     6b1496 <stg_ap_p_fast+0x26> # <= if (arity == 1) # 今回はarityは2
+  6b14b6:	48 83 c5 f0          	add    $0xfffffffffffffff0,%rbp    # <= Sp_adj(-2)
+  6b14ba:	4c 89 75 08          	mov    %r14,0x8(%rbp)              # <= W_[Sp+WDS(1)] = R2
+  6b14be:	48 83 f8 08          	cmp    $0x8,%rax                   # <=
+  6b14c2:	0f 82 e0 00 00 00    	jb     6b15a8 <stg_ap_p_fast+0x138> # <= jump (c) if (arity < 8)
+  6b14c8:	b9 20 00 00 00       	mov    $0x20,%ecx       # <= (d) BUILD_PAP(1,1,stg_ap_p_info,FUN)
+  6b14cd:	49 83 c4 20          	add    $0x20,%r12       # <=
+  6b14d1:	4d 3b a5 90 00 00 00 	cmp    0x90(%r13),%r12  # <=
   6b14d8:	0f 87 eb 00 00 00    	ja     6b15c9 <stg_ap_p_fast+0x159> # <=
   6b14de:	49 8d 4c 24 e8       	lea    -0x18(%r12),%rcx # <=
   6b14e3:	48 c7 01 60 09 6a 00 	movq   $0x6a0960,(%rcx) # <=
-  6b14ea:	48 ff c8             	dec    %rax # <=
-  6b14ed:	89 41 08             	mov    %eax,0x8(%rcx) # <=
-  6b14f0:	48 89 59 10          	mov    %rbx,0x10(%rcx) # <=
-  6b14f4:	c7 41 0c 01 00 00 00 	movl   $0x1,0xc(%rcx) # <=
-  6b14fb:	31 c0                	xor    %eax,%eax # <=
-  6b14fd:	48 83 f8 01          	cmp    $0x1,%rax # <= (f)
+  6b14ea:	48 ff c8             	dec    %rax             # <=
+  6b14ed:	89 41 08             	mov    %eax,0x8(%rcx)   # <=
+  6b14f0:	48 89 59 10          	mov    %rbx,0x10(%rcx)  # <=
+  6b14f4:	c7 41 0c 01 00 00 00 	movl   $0x1,0xc(%rcx)   # <=
+  6b14fb:	31 c0                	xor    %eax,%eax        # <=
+  6b14fd:	48 83 f8 01          	cmp    $0x1,%rax        # <= (f)
   6b1501:	0f 82 a9 00 00 00    	jb     6b15b0 <stg_ap_p_fast+0x140> # <= jump (e)
-  6b1507:	48 89 cb             	mov    %rcx,%rbx # <= 
-  6b150a:	48 83 c5 10          	add    $0x10,%rbp # <= 
-  6b150e:	ff 65 00             	jmpq   *0x0(%rbp) # <= jump stg_bh_upd_frame_info
+  6b1507:	48 89 cb             	mov    %rcx,%rbx        # <= 
+  6b150a:	48 83 c5 10          	add    $0x10,%rbp       # <= 
+  6b150e:	ff 65 00             	jmpq   *0x0(%rbp)       # <= jump stg_bh_upd_frame_info
   6b1511:	48 8b 03             	mov    (%rbx),%rax # <= (a) 
   6b1514:	48 63 40 ec          	movslq -0x14(%rax),%rax # <= arity = TO_W_(StgFunInfoExtra_arity(%GET_FUN_INFO(R1)))
   6b1518:	48 85 c0             	test   %rax,%rax # <= ASSERT(arity > 0)
@@ -73,10 +73,10 @@
   6b15a8:	48 01 c3             	add    %rax,%rbx                   # <= (c) R1 = R1 + arity
   6b15ab:	e9 18 ff ff ff       	jmpq   6b14c8 <stg_ap_p_fast+0x58> # <= jump (d)
   6b15b0:	48 8d 50 01          	lea    0x1(%rax),%rdx              # <= (e)
-  6b15b4:	48 8b 54 d5 00       	mov    0x0(%rbp,%rdx,8),%rdx # <=
-  6b15b9:	4c 8d 51 18          	lea    0x18(%rcx),%r10 # <=
-  6b15bd:	49 89 14 c2          	mov    %rdx,(%r10,%rax,8) # <=
-  6b15c1:	48 ff c0             	inc    %rax # <=
+  6b15b4:	48 8b 54 d5 00       	mov    0x0(%rbp,%rdx,8),%rdx       # <=
+  6b15b9:	4c 8d 51 18          	lea    0x18(%rcx),%r10             # <=
+  6b15bd:	49 89 14 c2          	mov    %rdx,(%r10,%rax,8)          # <=
+  6b15c1:	48 ff c0             	inc    %rax                        # <=
   6b15c4:	e9 34 ff ff ff       	jmpq   6b14fd <stg_ap_p_fast+0x8d> # <= jump (f)
   6b15c9:	49 89 8d c0 00 00 00 	mov    %rcx,0xc0(%r13)
   6b15d0:	48 c7 45 00 40 ae 6a 	movq   $0x6aae40,0x0(%rbp)
