@@ -2,7 +2,7 @@
 
 ## Debug for STG machine
 define stg_startup
-  break ZCMain_main_info
+  break Main_main_info
   run +RTS -V0
 end
 
