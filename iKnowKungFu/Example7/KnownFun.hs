@@ -1,6 +1,6 @@
-module KnownFun (case_scrut) where
-{-# NOINLINE case_scrut #-}
+module KnownFun (caseScrut) where
+{-# NOINLINE caseScrut #-}
 
-case_scrut :: Maybe Int -> Int
-case_scrut x = case x of Just j -> j
-                         Nothing -> 10
+caseScrut :: Maybe Int -> Int
+caseScrut x = case x of Just j -> j
+                        Nothing -> 10
