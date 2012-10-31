@@ -1,13 +1,13 @@
-{-# LANGUAGE OverloadedStrings #-}
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Char8 as B8
+import Control.DeepSeq
+import System.Exit
+--import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy.Char8 as BL8
+import MyString
 
-bstr :: B.ByteString
-bstr = "hogehoge"
+instance NFData BL8.ByteString
 
-str :: String
-str = "hogehoge"
-
+main :: IO ()
 main = do
-  putStrLn str
-  B8.putStrLn bstr
+  psStr `deepseq` putStrLn psStr
+  pbStr `deepseq` BL8.putStrLn pbStr
+  exitSuccess -- breakpoint base_SystemziExit_exitSuccess_info
